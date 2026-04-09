@@ -3,8 +3,12 @@ import { sleep, check } from 'k6';
 
 export const options = {
     // Define the number of iterations for the test
-    vus: 10,
-    duration: '30s',
+   stages: [
+    {duration: '5s', target: 10},
+    {duration: '20s', target: 10},
+    {duration: '5s', target: 0},
+
+   ],
     //iterations: 50,
     thresholds:{
         http_req_duration: ['p(90) < 3000', 'max<5000'],
